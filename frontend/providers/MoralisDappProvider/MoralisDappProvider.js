@@ -6,17 +6,22 @@ function MoralisDappProvider({children}) {
   const {web3, Moralis, user} = useMoralis();
   const [walletAddress, setWalletAddress] = useState();
   const [chainId, setChainId] = useState();
+
   useEffect(() => {
-    Moralis.onChainChanged(function (chain) {
-      setChainId(chain);
-    });
-
-    Moralis.onAccountChanged(function (address) {
-      setWalletAddress(address[0]);
-    });
+    if (Moralis?.onChainChanged && Moralis?.onAccountChanged) {
+      Moralis.onChainChanged(function (chain) {
+        // console.log(chain, "chain")
+        setChainId(chain);
+      });
+  
+      Moralis.onAccountChanged(function (address) {
+        // console.log(address, "address")
+        setWalletAddress(address[0]);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [Moralis?.onChainChanged, Moralis?.onAccountChanged]);
+  
   useEffect(() => setChainId(web3.givenProvider?.chainId));
   useMemo(
     () =>
