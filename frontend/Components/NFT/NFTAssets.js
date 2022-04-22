@@ -75,7 +75,7 @@ const NFTAssets = () => {
         🦧 NFT Assets
       </Text>
 
-      {!isLoading && NFTBalance.length > 0 ? (
+      {!isLoading ? (
         <FlatList
           style={styles.assetsViewer}
           scrollEnabled={true}
