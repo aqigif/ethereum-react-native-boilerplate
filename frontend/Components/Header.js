@@ -4,11 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import Address from './Address';
 
 export default function Header() {
-  return (
-    <View style={styles.viewContainer}>
-      <Address />
-    </View>
-  );
+  return <Address />;
 }
 const styles = StyleSheet.create({
   viewContainer: {

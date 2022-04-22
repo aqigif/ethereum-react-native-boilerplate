@@ -12,6 +12,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCopy} from '@fortawesome/free-solid-svg-icons';
 import {Tooltip} from '@ui-kitten/components';
 import Blockie from './Blockie';
+import { useMoralis } from 'react-moralis';
 
 export default function Address() {
   const {walletAddress, chainId} = useMoralisDapp();
@@ -23,7 +24,10 @@ export default function Address() {
   };
 
   const renderAddress = () => (
-    <View style={styles.viewContainer}>
+    <View
+      style={{
+        flex: 1,
+      }}>
       <TouchableOpacity
         style={styles.viewContainer}
         onPress={() => copyToClipboard()}>
