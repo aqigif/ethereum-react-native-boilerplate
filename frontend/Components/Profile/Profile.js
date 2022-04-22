@@ -13,8 +13,7 @@ import {
   useMoralisWeb3Api,
   useMoralisWeb3ApiCall,
 } from "react-moralis";
-import { NativeModules } from "react-native";
-
+import RNRestart from "react-native-restart"
 
 const Profile = ({ navigation }) => {
   const {
@@ -30,7 +29,7 @@ const Profile = ({ navigation }) => {
     try {
       if (isAuthenticated) {
         await logout();
-        NativeModules.DevSettings.reload();
+        RNRestart.Restart();
         // navigation.replace("Auth");
       }
       
