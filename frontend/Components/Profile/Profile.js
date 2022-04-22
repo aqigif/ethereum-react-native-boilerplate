@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -13,6 +13,8 @@ import {
   useMoralisWeb3Api,
   useMoralisWeb3ApiCall,
 } from "react-moralis";
+import { NativeModules } from "react-native";
+
 
 const Profile = ({ navigation }) => {
   const {
@@ -24,18 +26,30 @@ const Profile = ({ navigation }) => {
     Moralis,
   } = useMoralis();
 
-  const logoutUser = () => {
-    if (isAuthenticated) {
-      logout();
-      navigation.replace("Auth");
+  const logoutUser = async () => {
+    try {
+      if (isAuthenticated) {
+        await logout();
+        NativeModules.DevSettings.reload();
+        // navigation.replace("Auth");
+      }
+      
+    } catch (error) {
+      console.log(error)
     }
   };
+
+
+  // useEffect(() => {
+  //   !isAuthenticated && navigation.replace("Auth");
+  // }, [isAuthenticated]);
+
   return (
     <View style={styles.container}>
       <View style={styles.button}>
         <Button
           title="Logout"
-          color="white"
+          color="red"
           disabledStyle={{
             borderWidth: 2,
             borderColor: "#00F",
