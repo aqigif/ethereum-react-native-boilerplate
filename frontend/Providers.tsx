@@ -24,8 +24,8 @@ interface ProvidersProps {
 /**
  * Initialization of Moralis
  */
-const appId = REACT_APP_MORALIS_APPLICATION_ID;
-const serverUrl = REACT_APP_MORALIS_SERVER_URL;
+const appId = "EzFhuI3Tnrbqj0hxiLbN1wdQQcC2YFDx5qF4l5dc";
+const serverUrl = "https://4budrzq1dgfl.usemoralis.com:2053/server";
 const environment = 'native';
 // Initialize Moralis with AsyncStorage to support react-native storage
 Moralis.setAsyncStorage(AsyncStorage);
