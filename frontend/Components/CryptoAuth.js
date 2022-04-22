@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
     logout,
     Moralis,
   } = useMoralis();
-
+  
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -60,20 +60,27 @@ const LoginScreen = ({ navigation }) => {
   const hideDialog = () => setVisible(false);
 
   const passwordInputRef = createRef();
-
-  const handleCryptoLogin = () => {
-    authenticate({ connector })
-      .then(() => {
-        if (authError) {
-          setErrortext(authError.message);
-          setVisible(true);
-        } else {
-          if (isAuthenticated) {
-            navigation.replace("DrawerNavigationRoutes");
+  
+  const handleCryptoLogin = async () => {
+    try {
+      await authenticate({ connector: connector})
+        .then(() => {
+          if (authError) {
+            setErrortext(authError.message);
+            setVisible(true);
+          } else {
+            if (isAuthenticated) {
+              navigation.replace('DrawerNavigationRoutes');
+            }
           }
-        }
-      })
-      .catch(() => {});
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      
+    } catch (error) {
+      
+    }
   };
 
   useEffect(() => {
